@@ -1,0 +1,1 @@
+import type { Metadata } from "next"; import "./globals.css"; export const metadata:Metadata={title:"Beezos — Your Web OS",description:"A playful responsive web desktop with Shift Browser and your favorite apps.",icons:{icon:"/bee.svg"}}; export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}

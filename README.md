@@ -1,7 +1,21 @@
-# Beezos — Responsive Web OS
+# Beezos Web OS
 
-A responsive, macOS-inspired web desktop with a phone/tablet/desktop adaptive layout, custom pixel-art bee mark, windowed Shift Browser, Google search (Bing and DuckDuckGo selectable), app dock, wallpaper picker, file mockup, terminal (`help`, `ls`, `clear`, `echo`, `theme`, `date`), notes, and launchers for YouTube, Spotify, Discord, X, and Gmail.
+Responsive Next.js web desktop with custom bee mascot, Shift Browser launch/search panel, dock, Notes, sample Files, wallpaper settings, AI API, and protected owner console.
 
-This static-first prototype runs on Vercel without build tooling. Run locally with any static server, or deploy the repository directly to Vercel.
+## Local development
+- Node.js 20+
+- `npm install`
+- Copy `.env.example` to `.env.local` and set desired credentials
+- `npm run dev`
 
-Note: This is a browser-based simulation, not a native Apple OS. It cannot access private device hardware or proprietary Apple wallpapers. External apps open in new tabs; notes are page-local; assistant is not connected to an AI provider. Site-wide authentication and remote administration require a secure backend.
+## Environment
+- `OWNER_PASSWORD` and `SESSION_SECRET` enable signed HttpOnly owner sessions.
+- `KV_REST_API_URL` and `KV_REST_API_TOKEN` enable persistent maintenance settings using Vercel KV. Without these, the app explicitly reports that persistence is not configured.
+- `OPENAI_API_KEY` enables the server-side assistant. Optional `OPENAI_MODEL` defaults to `gpt-4o-mini`.
+
+Set secrets in Vercel Project Settings → Environment Variables; never put secrets in client code or commit them. Add provider-side usage limits and production rate limiting before opening the AI endpoint to high traffic.
+
+Shift opens the official https://shift.com site. This web app is not a browser engine, privileged hardware scanner, or cloud file provider. Notes and wallpaper preferences are local to the browser; Files are demo items.
+
+## Deploy
+Import this repo into Vercel as a Next.js project, add the environment variables, and connect a KV store for persistent owner settings.
